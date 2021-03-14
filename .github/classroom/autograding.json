@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "Test List Sum",
+      "setup": "",
+      "run": "gradle test --tests MultithreadingTest.TestListSum",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "Test Start",
+      "setup": "",
+      "run": "gradle test --tests TimerTest.TestStart",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "Test Stop",
+      "setup": "",
+      "run": "gradle test --tests TimerTest.TestStop",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "Test Reset",
+      "setup": "",
+      "run": "gradle test --tests TimerTest.TestReset",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    }
+  ]
+}

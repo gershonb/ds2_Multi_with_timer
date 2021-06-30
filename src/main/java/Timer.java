@@ -7,81 +7,20 @@ import java.util.Scanner;
 
 public class Timer {
 
-
+    long timeSave = -1;
     //DO NOT EDIT EXCEPT WITHIN METHODS
-    
-    public void start(){
-        //code here
 
-        try {
-            File myObj = new File("startBool.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                if(data.equals("1")){
-                    throw new IllegalArgumentException("Cannot start after a start without a reset");
-                }
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+    void start(){
+        timeSave = System.currentTimeMillis();
+    } // starts or resumes timer (throws an exception if start called after a start without reset
+    int stop(){
+        if (timeSave != -1) {
+            return (int) (timeSave - System.currentTimeMillis());
+        }else {
+            return -1;
         }
-
-        String startTime = Long.toString(System.currentTimeMillis());
-        try {
-            FileWriter myWriter = new FileWriter("startTime.txt");
-            FileWriter myWriter2 = new FileWriter("startBool.txt");
-            myWriter.write(startTime);
-            myWriter2.write("1");
-            myWriter.close();
-            myWriter2.close();
-
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-    }
-
-    public long stop(){
-        //code here
-        long endTime = 0;
-        try {
-            File myObj = new File("startTime.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                endTime = Long.parseLong(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        try {
-            FileWriter myWriter2 = new FileWriter("startBool.txt", false);
-            myWriter2.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-        return endTime;
-    }
-
-    public void reset(){
-        //code here
-        try {
-            FileWriter myWriter = new FileWriter("startTime.txt", false);
-            FileWriter myWriter2 = new FileWriter("startBool.txt", false);
-            myWriter.close();
-            myWriter2.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-
-    }
+    } // return milliseconds transpired since start was called (stop must be called only after start was called when time is ticking)
+    void reset(){
+        timeSave = -1;
+    } // resets timer to 0 and stops time from transpiring
 }
